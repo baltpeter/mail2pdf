@@ -1,0 +1,44 @@
+{
+    "name": "mail2pdf",
+    "version": "1.0.0",
+    "description": "Render emails stored as .eml files to PDF.",
+    "main": "dist/index.js",
+    "types": "dist/index.d.ts",
+    "author": "Benjamin Altpeter <hi@bn.al>",
+    "repository": "https://github.com/baltpeter/mail2pdf",
+    "license": "MIT",
+    "devDependencies": {
+        "@types/node": "^14.14.20",
+        "@typescript-eslint/eslint-plugin": "^4.12.0",
+        "@typescript-eslint/parser": "^4.12.0",
+        "eslint": "^7.17.0",
+        "eslint-config-prettier": "^7.1.0",
+        "eslint-plugin-eslint-comments": "^3.2.0",
+        "eslint-plugin-import": "^2.22.1",
+        "husky": "^4.3.7",
+        "lint-staged": "^10.5.3",
+        "prettier": "^2.2.1",
+        "typescript": "^4.1.3"
+    },
+    "scripts": {
+        "build": "tsc",
+        "watch": "tsc -w",
+        "start": "node dist/index.js"
+    },
+    "files": [
+        "/dist"
+    ],
+    "husky": {
+        "hooks": {
+            "pre-commit": "lint-staged"
+        }
+    },
+    "lint-staged": {
+        "*.{ts,js,scss,json}": [
+            "prettier --write"
+        ],
+        "*.{ts,js}": [
+            "eslint --fix"
+        ]
+    }
+}

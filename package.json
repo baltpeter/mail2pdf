@@ -1,6 +1,6 @@
 {
     "name": "mail2pdf",
-    "version": "1.0.0",
+    "version": "0.0.0",
     "description": "Render emails stored as .eml files to PDF.",
     "main": "dist/index.js",
     "types": "dist/index.d.ts",
@@ -8,6 +8,7 @@
     "repository": "https://github.com/baltpeter/mail2pdf",
     "license": "MIT",
     "devDependencies": {
+        "@types/mailparser": "^3.0.2",
         "@types/node": "^14.14.20",
         "@typescript-eslint/eslint-plugin": "^4.12.0",
         "@typescript-eslint/parser": "^4.12.0",
@@ -23,10 +24,12 @@
     "scripts": {
         "build": "tsc",
         "watch": "tsc -w",
-        "start": "node dist/index.js"
+        "start": "node dist/index.js",
+        "test": "echo 'TODO: No test specified yet.'"
     },
     "files": [
-        "/dist"
+        "/dist",
+        "/templates"
     ],
     "husky": {
         "hooks": {
@@ -40,5 +43,11 @@
         "*.{ts,js}": [
             "eslint --fix"
         ]
+    },
+    "dependencies": {
+        "handlebars": "^4.7.7",
+        "mailparser": "^3.1.0",
+        "pretty-bytes": "^5.6.0",
+        "puppeteer": "^8.0.0"
     }
 }

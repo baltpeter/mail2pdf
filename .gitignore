@@ -1,6 +1,7 @@
 tmp/
 *.tmp
 tmp.*
+*.tmp.*
 
 dist/
 

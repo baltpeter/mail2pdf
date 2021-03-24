@@ -1,0 +1,119 @@
+<html>
+<head>
+    <title>{{subject}}</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: system-ui, sans-serif;
+            font-size: 16px;
+            line-height: 1.4;
+            background-color: transparent !important;
+        }
+
+        * {
+            /*
+               Outlook inserts `page: <something>;` on certain elements which causes Chrome to push them onto a separate
+               page. This rule disables this as the additional pages contain mostly unnecessary whitespace and Outlook
+               doesn't even respect those rules itself when printing.
+            */
+            page: unset !important;
+        }
+
+        a {
+            color: rgb(11, 108, 218);
+        }
+
+        #header {
+            margin-bottom: 25px;
+        }
+
+        #attachments {
+            margin: 0 15px 0 10px;
+        }
+
+        #attachments h2 {
+            font-weight: normal;
+            font-size: 9pt;
+            border-bottom: 1px solid rgb(87, 87, 87);
+            line-height: 0;
+            margin: 10px -15px 15px -10px;
+        }
+
+        #attachments h2 span {
+            background-color: #fff;
+            margin-left: 10px;
+        }
+
+        table#attachments-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        #attachments-table td:nth-of-type(2) {
+            text-align: right;
+        }
+
+        table#attachments-table tr td {
+            border-bottom: 1px solid rgb(87, 87, 87);
+            padding: 5px 0;
+        }
+
+        table#attachments-table tr:last-child td {
+            border: none;
+        }
+
+        ul.br-list {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .mono {
+            font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
+            font-size: 0.8em;
+        }
+    </style>
+</head>
+<body>
+    <div id="header">
+        <ul class="br-list">
+            <li><strong>Subject:</strong> {{subject}}</li>
+            {{#if from}}
+                <li><strong>From:</strong> {{from}}</li>
+            {{/if}}
+            {{#if date}}
+                <li><strong>Date:</strong> {{date}}</li>
+            {{/if}}
+            {{#if to}}
+                <li><strong>To:</strong> {{to}}</li>
+            {{/if}}
+            {{#if cc}}
+                <li><strong>CC:</strong> {{cc}}</li>
+            {{/if}}
+            {{#if bcc}}
+                <li><strong>BCC:</strong> {{bcc}}</li>
+            {{/if}}
+            {{#if priority}}
+                <li><strong>Priority:</strong> {{priority}}</li>
+            {{/if}}
+        </ul>
+    </div>
+
+    <div id="body" {{#unless has_html_body}}class="mono" {{/unless}}>
+        {{{body}}}
+    </div>
+    {{#if attachments}}
+        <div id="attachments">
+            <h2><span>Attachments:</span></h2>
+            <table id="attachments-table">
+                {{#each attachments}}
+                    <tr>
+                        <td>{{this.filename}}</td>
+                        <td>{{this.prettySize}}</td>
+                    </tr>
+                {{/each}}
+            </table>
+        </div>
+    {{/if}}
+</body>
+</html>

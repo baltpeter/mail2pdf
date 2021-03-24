@@ -9,8 +9,10 @@ import Stream = StreamModule.Stream;
 
 type EmlInput = string | Buffer | Stream;
 type Template = 'thunderbird';
-type Language = 'en';
+type Language = 'en' | 'de';
 
+const loadLanguage = async (lang: string) =>
+    JSON.parse((await fs.readFile(join(__dirname, '..', 'res', 'i18n', lang + '.json'))).toString());
 // The header and footer templates don't respect the page styles. They need their own styles, otherwise they will be
 // tiny, see: https://github.com/puppeteer/puppeteer/issues/1822#issuecomment-530533300
 const headerFooter = (html: string, align = 'left') =>
@@ -25,7 +27,7 @@ const addressesToString = (addr?: AddressObject | AddressObject[]) =>
  *            each one, either provide a file path as a string, which will then be read from the filesystem, or the
  *            content of the .eml file as a `Buffer` or `Stream`.
  * @param options.language The language to be used for the labels in the generated PDF (optional, defaults to `en`).
- *                         Currently, only English is supported.
+ *                         Currently, English (`en`) and German (`de`) are supported.
  * @param options.template_name The template to use (optional, defaults to `thunderbird`). Currently, only `thunderbird`
  *                              is supported which will generate output similar to Thunderbird’s “Print to PDF” feature.
  *
@@ -39,6 +41,12 @@ export = async function mail2pdf(
     options = { language: 'en', template_name: 'thunderbird', ...options };
     eml = Array.isArray(eml) ? eml : [eml];
 
+    const i18n = await loadLanguage(options.language!);
+    const i18n_fallback = await loadLanguage('en');
+    const template = handlebars.compile(
+        (await fs.readFile(join(__dirname, '..', 'res', 'templates', options?.template_name + '.hbr'))).toString()
+    );
+
     const browser = await puppeteer.launch({ headless: true });
     const page = await browser.newPage();
 
@@ -46,9 +54,6 @@ export = async function mail2pdf(
         eml.map(async (e) => {
             const mail = await simpleParser(typeof e === 'string' ? await fs.readFile(e) : e);
 
-            const template = handlebars.compile(
-                (await fs.readFile(join(__dirname, '..', 'templates', options?.template_name + '.hbr'))).toString()
-            );
             const html = template({
                 subject: mail.subject,
                 has_html_body: mail.html !== false,
@@ -62,6 +67,7 @@ export = async function mail2pdf(
                 attachments: mail.attachments
                     .filter((a) => a.contentDisposition === 'attachment')
                     .map((a) => ({ ...a, filename: a.filename || '<unnamed>', prettySize: prettyBytes(a.size) })),
+                i18n: { ...i18n_fallback, ...i18n },
             });
             await page.setContent(html);
 

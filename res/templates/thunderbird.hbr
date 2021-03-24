@@ -77,24 +77,24 @@
 <body>
     <div id="header">
         <ul class="br-list">
-            <li><strong>Subject:</strong> {{subject}}</li>
+            <li><strong>{{i18n.subject}}</strong> {{subject}}</li>
             {{#if from}}
-                <li><strong>From:</strong> {{from}}</li>
+                <li><strong>{{i18n.from}}</strong> {{from}}</li>
             {{/if}}
             {{#if date}}
-                <li><strong>Date:</strong> {{date}}</li>
+                <li><strong>{{i18n.date}}</strong> {{date}}</li>
             {{/if}}
             {{#if to}}
-                <li><strong>To:</strong> {{to}}</li>
+                <li><strong>{{i18n.to}}</strong> {{to}}</li>
             {{/if}}
             {{#if cc}}
-                <li><strong>CC:</strong> {{cc}}</li>
+                <li><strong>{{i18n.cc}}</strong> {{cc}}</li>
             {{/if}}
             {{#if bcc}}
-                <li><strong>BCC:</strong> {{bcc}}</li>
+                <li><strong>{{i18n.bcc}}</strong> {{bcc}}</li>
             {{/if}}
             {{#if priority}}
-                <li><strong>Priority:</strong> {{priority}}</li>
+                <li><strong>{{i18n.priority}}</strong> {{priority}}</li>
             {{/if}}
         </ul>
     </div>
@@ -104,7 +104,7 @@
     </div>
     {{#if attachments}}
         <div id="attachments">
-            <h2><span>Attachments:</span></h2>
+            <h2><span>{{i18n.attachments}}</span></h2>
             <table id="attachments-table">
                 {{#each attachments}}
                     <tr>

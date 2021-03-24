@@ -1,0 +1,10 @@
+{
+    "subject": "Betreff:",
+    "from": "Von:",
+    "date": "Datum:",
+    "to": "An:",
+    "cc": "Kopie (CC):",
+    "bcc": "Blindkopie (BCC):",
+    "priority": "Priorität:",
+    "attachments": "Anhänge:"
+}

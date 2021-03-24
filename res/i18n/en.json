@@ -1,0 +1,10 @@
+{
+    "subject": "Subject:",
+    "from": "From:",
+    "date": "Date:",
+    "to": "To:",
+    "cc": "CC:",
+    "bcc": "BCC:",
+    "priority": "Priority:",
+    "attachments": "Attachments:"
+}

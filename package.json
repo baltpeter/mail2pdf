@@ -1,6 +1,6 @@
 {
     "name": "mail2pdf",
-    "version": "0.1.0",
+    "version": "0.2.0",
     "description": "Render emails stored as .eml files to PDF.",
     "main": "dist/index.js",
     "types": "dist/index.d.ts",

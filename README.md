@@ -2,7 +2,7 @@
 
 > Node.js library to render emails stored as .eml files to PDF.
 
-![An example email converted using mail2pdf. On the left, the .eml file is opened in Thunderbird, on the right, the result PDF is opened. The test email was created using Microsoft Outlook and contains complex formatting like tables and images. The conversion was successful.](https://cdn.baltpeter.io/img/mail2pdf-screenshot.png)
+![An example email converted using mail2pdf. On the left, the .eml file is opened in Thunderbird, on the right, the result PDF is opened. The test email was created using Microsoft Outlook and contains complex formatting like tables and images. The conversion was successful.](https://static.bn.al/img/mail2pdf-screenshot.png)
 
 With mail2pdf, you can convert emails stored as .eml files (as exported by Thunderbird, for example) to PDF files from Node.js. The goal is to produce an output that closely matches what an actual email program would export when using the "Print to PDF" feature. This can be useful for archival purposes, for example.
 
@@ -21,7 +21,7 @@ yarn add mail2pdf
 
 ## Example usage
 
-To demonstrate how to use mail2pdf, this code shows how to convert a [sample .eml file](https://cdn.baltpeter.io/other/mail2pdf/sample.eml) to PDF. The email was sent using Microsoft Outlook and contains complex formatting like tables and images.
+To demonstrate how to use mail2pdf, this code shows how to convert a [sample .eml file](https://static.bn.al/other/mail2pdf/sample.eml) to PDF. The email was sent using Microsoft Outlook and contains complex formatting like tables and images.
 
 ```js
 import mail2pdf from 'mail2pdf';
@@ -38,7 +38,7 @@ import { promises as fs } from 'fs';
 })();
 ```
 
-You can view the conversion result [here](https://cdn.baltpeter.io/other/mail2pdf/sample.pdf).
+You can view the conversion result [here](https://static.bn.al/other/mail2pdf/sample.pdf).
 
 ## API
 
